@@ -1,0 +1,17 @@
+{
+  "accuracy": 0.9789964994165694,
+  "precision": 0.9738717339667459,
+  "recall_sensitivity": 0.9832134292565947,
+  "f1": 0.9785202863961814,
+  "roc_auc": 0.9987791584913888,
+  "train_recordings": 3526,
+  "test_recordings": 857,
+  "train_falls": 1700,
+  "test_falls": 417,
+  "sources": {
+    "local": 60,
+    "mobifall": 632,
+    "sisfall": 3691
+  },
+  "split_method": "participant-grouped 80/20"
+}
