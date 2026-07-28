@@ -9,6 +9,8 @@ import type { MlPredictorService } from './MlPredictorService';
 import type { WebSocketService } from './WebSocketService';
 import type { PredictionResult } from './telemetryTypes';
 
+const CONNECTED_DEVICE_SERVICE_TYPE = 16 as ServiceType;
+
 type BackgroundManagerOptions = {
   foregroundNotificationId?: number;
   foregroundChannelId?: string;
@@ -109,9 +111,9 @@ export class BackgroundManager {
       smallIcon: 'ic_stat_codetect',
       notificationChannelId: this.foregroundChannelId,
       silent: false,
-      // The current Capawesome docs expose ServiceType. Cast to string fallback
-      // so older enum typings do not block using Android 14's connectedDevice.
-      serviceType: (ServiceType as Record<string, string>).ConnectedDevice ?? 'connectedDevice',
+      // Android's connectedDevice foreground-service type is flag value 16.
+      // Capawesome 6.x typings expose only a subset of Android's service flags.
+      serviceType: CONNECTED_DEVICE_SERVICE_TYPE,
     });
   }
 

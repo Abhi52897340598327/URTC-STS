@@ -13,7 +13,7 @@ The package name in some older examples is easy to mistype. Current Capawesome d
 
 ## AndroidManifest.xml
 
-For Android 14+, foreground services must declare both a service type and the matching type permission. CODetect is a user-visible continuous external-device monitor over local Wi-Fi, so `connectedDevice` is the closest fit. If Play policy review rejects that framing, use `dataSync` only if you position the service as continuous local/network data transfer and processing.
+For Android 14+, foreground seryvices must declare both a service type and the matching type permission. CODetect is a user-visible continuous external-device monitor over local Wi-Fi, so `connectedDevice` is the closest fit. If Play policy review rejects that framing, use `dataSync` only if you position the service as continuous local/network data transfer and processing.
 
 ```xml
 <manifest>
@@ -78,7 +78,7 @@ The included CSV adapter can train from `data/co-data` CO-only logs by filling B
 
 The 10 Hz inference loop uses `tf.tidy()` around tensor creation and prediction, converts the output to a plain number with `dataSync()[0]`, and lets TensorFlow dispose every intermediate tensor immediately. Training tensors are explicitly disposed in a `finally` block after `model.fit()`.
 
-React should consume throttled derived state only, for example updating charts 2-4 times per second from `WebSocketService.getLatestSamples()`. Keep raw sample ingestion in services or a Zustand vanilla store so React does not render for every packet.
+React should consume throttled derived state only, for example updating charts 2-4 times per second from `WebSocketService.getLatestSamples()`. `telemetryStore.ts` is a Zustand vanilla store with `createThrottledUiPublisher(250)`, so service code can process all 10 packets per second while React renders at about 4 Hz.
 
 ## Runtime Wiring
 
