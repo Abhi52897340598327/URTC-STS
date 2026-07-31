@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-07-31T01:18:53.560Z",
+  "generatedAt": "2026-07-31T01:54:25.258Z",
   "framework": "TensorFlow.js",
   "modelType": "GRU",
+  "predictionMode": "Residual GRU forecast: predictedCoPpm = lastInputCoPpm + gruPredictedResidualPpm",
   "dataDir": "/Users/abhiraamvenigalla/URTC-STS/data/co-data",
   "sourceFiles": [
     "BATHROOM.CSV",
@@ -30,40 +31,41 @@
     "sensor_data.csv": 2470
   },
   "sequenceCountsByFile": {
-    "BATHROOM.CSV": 2255,
-    "BEDROOM.CSV": 1652,
-    "D3131.CSV": 1262,
-    "D3132.CSV": 740,
-    "D3442.CSV": 152,
-    "DATA.CSV": 1603,
-    "KITCHEN.CSV": 108,
-    "LOG000.CSV": 0,
+    "BATHROOM.CSV": 229,
+    "BEDROOM.CSV": 169,
+    "D3131.CSV": 130,
+    "D3132.CSV": 77,
+    "D3442.CSV": 19,
+    "DATA.CSV": 164,
+    "KITCHEN.CSV": 14,
+    "LOG000.CSV": 1,
     "TEST.CSV": 0,
-    "new_sensor_data.csv": 721,
-    "sensor_data.csv": 2410
+    "new_sensor_data.csv": 75,
+    "sensor_data.csv": 244
   },
-  "eligibleTargetMinimumCoPpm": 35,
+  "eligibleTargetMinimumCoPpm": null,
   "maximumCoPpmIncluded": 200,
   "eligibleSequenceCountsByFile": {
-    "BATHROOM.CSV": 0,
-    "BEDROOM.CSV": 0,
-    "D3131.CSV": 0,
-    "D3132.CSV": 139,
-    "D3442.CSV": 73,
-    "DATA.CSV": 0,
-    "KITCHEN.CSV": 0,
-    "LOG000.CSV": 0,
+    "BATHROOM.CSV": 229,
+    "BEDROOM.CSV": 169,
+    "D3131.CSV": 130,
+    "D3132.CSV": 77,
+    "D3442.CSV": 19,
+    "DATA.CSV": 164,
+    "KITCHEN.CSV": 14,
+    "LOG000.CSV": 1,
     "TEST.CSV": 0,
-    "new_sensor_data.csv": 1,
-    "sensor_data.csv": 0
+    "new_sensor_data.csv": 75,
+    "sensor_data.csv": 244
   },
-  "eligibleSequenceCount": 213,
-  "sequenceCount": 213,
-  "trainSequenceCount": 181,
-  "testSequenceCount": 32,
+  "eligibleSequenceCount": 1122,
+  "sequenceCount": 1122,
+  "trainSequenceCount": 954,
+  "testSequenceCount": 168,
   "testSplit": 0.15,
+  "sequenceStride": 10,
   "inputWindowLengthTimesteps": 30,
-  "forecastHorizonSteps": 30,
+  "forecastHorizonSteps": 1,
   "inputFeatures": [
     "coPpm",
     "bpm_zero_filled",
@@ -71,222 +73,1052 @@
     "accelY_zero_filled",
     "accelZ_zero_filled"
   ],
-  "epochs": 180,
-  "batchSize": 32,
-  "finalTrainLoss": 1778.313232421875,
-  "finalValidationLoss": 1926.4102783203125,
-  "finalTrainMae": 35.077842712402344,
-  "finalValidationMae": 37.45417022705078,
-  "testMae": 37.454168577194224,
-  "testRmse": 43.89089007176272,
+  "epochs": 20,
+  "batchSize": 128,
+  "targetR2": 0.9,
+  "maxAttempts": 2,
+  "selectedAttempt": 2,
+  "selectedSeed": 19,
+  "achievedTargetR2": false,
+  "finalTrainLoss": 0.7211474776268005,
+  "finalValidationLoss": 0.8113835453987122,
+  "finalTrainMae": 0.9621431221592961,
+  "finalValidationMae": 1.069451339336394,
+  "testMae": 1.0694513769299117,
+  "testRmse": 7.381024995999815,
+  "testR2": 0.8134200391175552,
+  "persistenceTestMae": 1.0032738095238083,
+  "persistenceTestRmse": 7.147830381777858,
+  "persistenceTestR2": 0.8250233402193955,
+  "calibratedResidualWeight": 1,
   "featureStats": {
     "mean": [
-      38.9771546961326,
+      6.528981830887273,
       0,
       0,
       0,
       0
     ],
     "std": [
-      44.43444254100666,
+      14.812010900475318,
       1,
       1,
       1,
       1
     ]
   },
+  "targetStats": {
+    "mean": -0.21807127882599567,
+    "std": 8.19414312817288
+  },
   "predictions": [
     {
-      "timestampSeconds": 338.439,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 57.04,
-      "predictedCoPpm": 93.2587890625
+      "timestampSeconds": 247.473,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 4.73,
+      "predictedCoPpm": 5.137860014407495
     },
     {
-      "timestampSeconds": 340.459,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 43.49,
-      "predictedCoPpm": 93.25836944580078
+      "timestampSeconds": 409.094,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 3.99,
+      "predictedCoPpm": 4.280796479820471
     },
     {
-      "timestampSeconds": 342.479,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 35.36,
-      "predictedCoPpm": 93.25791931152344
+      "timestampSeconds": 570.736,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.41,
+      "predictedCoPpm": 6.936460508762696
     },
     {
-      "timestampSeconds": 350.561,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 126.14,
-      "predictedCoPpm": 93.2573013305664
+      "timestampSeconds": 651.542,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.23,
+      "predictedCoPpm": 6.956562491777653
     },
     {
-      "timestampSeconds": 352.581,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 181.09,
-      "predictedCoPpm": 93.25728607177734
+      "timestampSeconds": 732.368,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 6.35,
+      "predictedCoPpm": 7.850529196765191
     },
     {
-      "timestampSeconds": 354.63,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 121.03,
-      "predictedCoPpm": 93.25877380371094
+      "timestampSeconds": 792.974,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.97,
+      "predictedCoPpm": 8.340448439329867
     },
     {
-      "timestampSeconds": 356.65,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 112.06,
-      "predictedCoPpm": 93.25923919677734
+      "timestampSeconds": 833.378,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.59,
+      "predictedCoPpm": 8.481932710998706
     },
     {
-      "timestampSeconds": 358.67,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 94.15,
-      "predictedCoPpm": 93.24735260009766
+      "timestampSeconds": 873.78,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.05,
+      "predictedCoPpm": 6.925454906620713
     },
     {
-      "timestampSeconds": 360.69,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 78.34,
-      "predictedCoPpm": 93.25143432617188
+      "timestampSeconds": 893.982,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 9.33,
+      "predictedCoPpm": 9.001312778655702
     },
     {
-      "timestampSeconds": 362.71,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 66.04,
-      "predictedCoPpm": 93.25418090820312
+      "timestampSeconds": 934.392,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 5.68,
+      "predictedCoPpm": 7.415396026938206
     },
     {
-      "timestampSeconds": 364.73,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 63.85,
-      "predictedCoPpm": 93.25559997558594
+      "timestampSeconds": 1378.71,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 5.68,
+      "predictedCoPpm": 6.133610647460807
     },
     {
-      "timestampSeconds": 366.75,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 80.84,
-      "predictedCoPpm": 93.2564926147461
+      "timestampSeconds": 1459.448,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 6.87,
+      "predictedCoPpm": 7.421134572384335
     },
     {
-      "timestampSeconds": 368.77,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 82.75,
-      "predictedCoPpm": 93.2569580078125
+      "timestampSeconds": 1479.63,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 6.87,
+      "predictedCoPpm": 6.86469715327358
     },
     {
-      "timestampSeconds": 370.792,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 85.34,
-      "predictedCoPpm": 93.25731658935547
+      "timestampSeconds": 1641.083,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.41,
+      "predictedCoPpm": 8.346408158458457
     },
     {
-      "timestampSeconds": 372.812,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 90.01,
-      "predictedCoPpm": 93.25740051269531
+      "timestampSeconds": 1863.085,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.41,
+      "predictedCoPpm": 7.248555505096434
     },
     {
-      "timestampSeconds": 374.832,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 113.65,
-      "predictedCoPpm": 93.25736999511719
+      "timestampSeconds": 1883.267,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.05,
+      "predictedCoPpm": 6.308570471283813
     },
     {
-      "timestampSeconds": 376.852,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 145.31,
-      "predictedCoPpm": 93.25091552734375
+      "timestampSeconds": 1903.449,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 6.87,
+      "predictedCoPpm": 6.512558196625713
     },
     {
-      "timestampSeconds": 378.872,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 128.75,
-      "predictedCoPpm": 65.46031188964844
+      "timestampSeconds": 2105.302,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 6.35,
+      "predictedCoPpm": 6.004646129796864
     },
     {
-      "timestampSeconds": 380.892,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 155.19,
-      "predictedCoPpm": 65.46760559082031
+      "timestampSeconds": 2186.067,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.23,
+      "predictedCoPpm": 7.511011626045818
     },
     {
-      "timestampSeconds": 382.912,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 110.48,
-      "predictedCoPpm": 93.25727844238281
+      "timestampSeconds": 2428.27,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 8.35,
+      "predictedCoPpm": 8.395247012285155
     },
     {
-      "timestampSeconds": 384.932,
-      "sourceFile": "D3442.CSV",
+      "timestampSeconds": 2488.858,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.97,
+      "predictedCoPpm": 8.699836723567469
+    },
+    {
+      "timestampSeconds": 2529.262,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 6.69,
+      "predictedCoPpm": 6.191586046168547
+    },
+    {
+      "timestampSeconds": 2589.868,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.41,
+      "predictedCoPpm": 6.9787133581387
+    },
+    {
+      "timestampSeconds": 2771.693,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 5.68,
+      "predictedCoPpm": 5.973509780280922
+    },
+    {
+      "timestampSeconds": 3296.846,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 8.15,
+      "predictedCoPpm": 8.049989098923435
+    },
+    {
+      "timestampSeconds": 3418.068,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 9.53,
+      "predictedCoPpm": 8.92900980491454
+    },
+    {
+      "timestampSeconds": 3458.472,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.78,
+      "predictedCoPpm": 7.657359178213042
+    },
+    {
+      "timestampSeconds": 3559.482,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 8.73,
+      "predictedCoPpm": 9.583094065854873
+    },
+    {
+      "timestampSeconds": 3579.678,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 9.13,
+      "predictedCoPpm": 8.309534653334037
+    },
+    {
+      "timestampSeconds": 3599.874,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 10.36,
+      "predictedCoPpm": 9.96209314469
+    },
+    {
+      "timestampSeconds": 3640.283,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 11.22,
+      "predictedCoPpm": 11.29093527831514
+    },
+    {
+      "timestampSeconds": 3721.061,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 12.11,
+      "predictedCoPpm": 10.864225728867275
+    },
+    {
+      "timestampSeconds": 3822.024,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 10.15,
+      "predictedCoPpm": 9.476135044191063
+    },
+    {
+      "timestampSeconds": 4003.857,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 5.35,
+      "predictedCoPpm": 5.358983270109444
+    },
+    {
+      "timestampSeconds": 4125.101,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.41,
+      "predictedCoPpm": 7.9943698614992575
+    },
+    {
+      "timestampSeconds": 4165.505,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 8.93,
+      "predictedCoPpm": 7.493718406820709
+    },
+    {
+      "timestampSeconds": 4226.116,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.05,
+      "predictedCoPpm": 8.618689325033404
+    },
+    {
+      "timestampSeconds": 4286.715,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.97,
+      "predictedCoPpm": 7.250319684158078
+    },
+    {
+      "timestampSeconds": 4387.706,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 7.78,
+      "predictedCoPpm": 6.917876386419025
+    },
+    {
+      "timestampSeconds": 4589.679,
+      "sourceFile": "BATHROOM.CSV",
+      "actualCoPpm": 8.15,
+      "predictedCoPpm": 7.535316180730326
+    },
+    {
+      "timestampSeconds": 65.743,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.87,
+      "predictedCoPpm": 1.807024293409826
+    },
+    {
+      "timestampSeconds": 106.107,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.87,
+      "predictedCoPpm": 1.807024293409826
+    },
+    {
+      "timestampSeconds": 186.833,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6089021253261375
+    },
+    {
+      "timestampSeconds": 227.242,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6035923106731704
+    },
+    {
+      "timestampSeconds": 368.671,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6035926769799131
+    },
+    {
+      "timestampSeconds": 610.916,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6035926769799131
+    },
+    {
+      "timestampSeconds": 1216.453,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6035926769799131
+    },
+    {
+      "timestampSeconds": 156.726,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 3.05,
+      "predictedCoPpm": 2.9532806733550467
+    },
+    {
+      "timestampSeconds": 176.928,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 3.05,
+      "predictedCoPpm": 2.951379632936626
+    },
+    {
+      "timestampSeconds": 318.383,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 2.8,
+      "predictedCoPpm": 2.8241865575613696
+    },
+    {
+      "timestampSeconds": 419.391,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.84,
+      "predictedCoPpm": 5.765791649769824
+    },
+    {
+      "timestampSeconds": 803.278,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.35,
+      "predictedCoPpm": 5.253175879101045
+    },
+    {
+      "timestampSeconds": 1045.713,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.2,
+      "predictedCoPpm": 5.100859271314315
+    },
+    {
+      "timestampSeconds": 1227.536,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.2,
+      "predictedCoPpm": 5.100694021184971
+    },
+    {
+      "timestampSeconds": 1328.586,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.2,
+      "predictedCoPpm": 5.100694021184971
+    },
+    {
+      "timestampSeconds": 1389.192,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.2,
+      "predictedCoPpm": 5.100694021184971
+    },
+    {
+      "timestampSeconds": 1409.394,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.2,
+      "predictedCoPpm": 5.100694021184971
+    },
+    {
+      "timestampSeconds": 1651.858,
+      "sourceFile": "BEDROOM.CSV",
+      "actualCoPpm": 5.04,
+      "predictedCoPpm": 4.938749565786138
+    },
+    {
+      "timestampSeconds": 206.816,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.708668541869791
+    },
+    {
+      "timestampSeconds": 267.362,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5842025438807394
+    },
+    {
+      "timestampSeconds": 549.937,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.55,
+      "predictedCoPpm": 2.4681322215663215
+    },
+    {
+      "timestampSeconds": 671.039,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.55,
+      "predictedCoPpm": 2.4661742662377386
+    },
+    {
+      "timestampSeconds": 812.317,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.55,
+      "predictedCoPpm": 2.466257738386753
+    },
+    {
+      "timestampSeconds": 852.687,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.55,
+      "predictedCoPpm": 2.5764972204949212
+    },
+    {
+      "timestampSeconds": 872.869,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.578032686784032
+    },
+    {
+      "timestampSeconds": 1074.72,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.469656042353568
+    },
+    {
+      "timestampSeconds": 1115.084,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825415870066593
+    },
+    {
+      "timestampSeconds": 1417.825,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825614286218936
+    },
+    {
+      "timestampSeconds": 1458.189,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.582562893848865
+    },
+    {
+      "timestampSeconds": 1579.296,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825608944245606
+    },
+    {
+      "timestampSeconds": 1660.024,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5815439353298757
+    },
+    {
+      "timestampSeconds": 1700.394,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.4691654813110606
+    },
+    {
+      "timestampSeconds": 1902.243,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.580533905537742
+    },
+    {
+      "timestampSeconds": 2063.71,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825608944245606
+    },
+    {
+      "timestampSeconds": 2285.716,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825608944245606
+    },
+    {
+      "timestampSeconds": 2366.459,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825608944245606
+    },
+    {
+      "timestampSeconds": 2386.639,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.5825608944245606
+    },
+    {
+      "timestampSeconds": 2487.551,
+      "sourceFile": "D3131.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.708668267139734
+    },
+    {
+      "timestampSeconds": 81.839,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 6.18,
+      "predictedCoPpm": 6.914223996753783
+    },
+    {
+      "timestampSeconds": 162.567,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 2.92,
+      "predictedCoPpm": 2.8369206925400885
+    },
+    {
+      "timestampSeconds": 243.389,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 2.2,
+      "predictedCoPpm": 2.132603932579489
+    },
+    {
+      "timestampSeconds": 324.197,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 1.87,
+      "predictedCoPpm": 1.8121960562091024
+    },
+    {
+      "timestampSeconds": 425.212,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6050491583776094
+    },
+    {
+      "timestampSeconds": 445.414,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 1.66,
+      "predictedCoPpm": 1.6035858392540476
+    },
+    {
+      "timestampSeconds": 5.208,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 13.49,
+      "predictedCoPpm": 1.7081729397785457
+    },
+    {
+      "timestampSeconds": 86.014,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 6.01,
+      "predictedCoPpm": 6.3880296367059355
+    },
+    {
+      "timestampSeconds": 166.828,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 3.58,
+      "predictedCoPpm": 3.4731801999117295
+    },
+    {
+      "timestampSeconds": 498.188,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 9.33,
+      "predictedCoPpm": 9.525019367494274
+    },
+    {
+      "timestampSeconds": 716.385,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 20.89,
+      "predictedCoPpm": 23.57352679376106
+    },
+    {
+      "timestampSeconds": 797.242,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 10.15,
+      "predictedCoPpm": 10.448542170791328
+    },
+    {
+      "timestampSeconds": 938.791,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 12.79,
+      "predictedCoPpm": 13.421978098339213
+    },
+    {
+      "timestampSeconds": 39.562,
+      "sourceFile": "D3132.CSV",
       "actualCoPpm": 98.43,
-      "predictedCoPpm": 93.25746154785156
+      "predictedCoPpm": 81.11897560135586
     },
     {
-      "timestampSeconds": 386.952,
+      "timestampSeconds": 126.522,
+      "sourceFile": "D3132.CSV",
+      "actualCoPpm": 135.01,
+      "predictedCoPpm": 124.10025144591603
+    },
+    {
+      "timestampSeconds": 132.534,
       "sourceFile": "D3442.CSV",
-      "actualCoPpm": 72.31,
-      "predictedCoPpm": 93.25751495361328
+      "actualCoPpm": 149.2,
+      "predictedCoPpm": 56.831305085536314
     },
     {
-      "timestampSeconds": 388.972,
+      "timestampSeconds": 233.442,
       "sourceFile": "D3442.CSV",
-      "actualCoPpm": 53.56,
-      "predictedCoPpm": 93.25796508789062
+      "actualCoPpm": 20.6,
+      "predictedCoPpm": 15.053474114886502
     },
     {
-      "timestampSeconds": 390.994,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 40.53,
-      "predictedCoPpm": 93.2587661743164
+      "timestampSeconds": 64.937,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 8.35,
+      "predictedCoPpm": 9.259112968269529
     },
     {
-      "timestampSeconds": 393.014,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 36.91,
-      "predictedCoPpm": 93.2587890625
+      "timestampSeconds": 28.345,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 4.88,
+      "predictedCoPpm": 5.101906801759242
     },
     {
-      "timestampSeconds": 397.054,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 37.7,
-      "predictedCoPpm": 93.25785827636719
+      "timestampSeconds": 39.425,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 4.73,
+      "predictedCoPpm": 4.62469699981974
     },
     {
-      "timestampSeconds": 403.114,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 36.52,
-      "predictedCoPpm": 93.25862884521484
+      "timestampSeconds": 110.209,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.8,
+      "predictedCoPpm": 2.709644795127683
     },
     {
-      "timestampSeconds": 439.478,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 40.53,
-      "predictedCoPpm": 93.2521743774414
+      "timestampSeconds": 27.363,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.67,
+      "predictedCoPpm": 2.7304130061624887
     },
     {
-      "timestampSeconds": 441.498,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 38.9,
-      "predictedCoPpm": 93.2519302368164
+      "timestampSeconds": 209.012,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 12.56,
+      "predictedCoPpm": 13.370041342194858
     },
     {
-      "timestampSeconds": 443.518,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 45.67,
-      "predictedCoPpm": 93.24868774414062
+      "timestampSeconds": 249.374,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 12.79,
+      "predictedCoPpm": 12.868515202692675
     },
     {
-      "timestampSeconds": 445.536,
-      "sourceFile": "D3442.CSV",
-      "actualCoPpm": 44.35,
-      "predictedCoPpm": 93.25118255615234
+      "timestampSeconds": 309.92,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 13.26,
+      "predictedCoPpm": 13.454171733691446
     },
     {
-      "timestampSeconds": 352,
+      "timestampSeconds": 713.677,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 12.79,
+      "predictedCoPpm": 12.954764811533225
+    },
+    {
+      "timestampSeconds": 1137.577,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 12.56,
+      "predictedCoPpm": 12.949600069613187
+    },
+    {
+      "timestampSeconds": 1299.038,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 12.79,
+      "predictedCoPpm": 13.20333836440109
+    },
+    {
+      "timestampSeconds": 1339.402,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 13.02,
+      "predictedCoPpm": 13.00330662111708
+    },
+    {
+      "timestampSeconds": 1359.591,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 13.26,
+      "predictedCoPpm": 13.199124982143212
+    },
+    {
+      "timestampSeconds": 1420.144,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 14.95,
+      "predictedCoPpm": 14.87304543842262
+    },
+    {
+      "timestampSeconds": 1460.508,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 14.7,
+      "predictedCoPpm": 15.157230935378832
+    },
+    {
+      "timestampSeconds": 2005.495,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2066.048,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2106.434,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2227.526,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2247.715,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2288.073,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2328.454,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2530.279,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 2611.025,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.43,
+      "predictedCoPpm": 2.3498074033522474
+    },
+    {
+      "timestampSeconds": 11.219,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 2.8,
+      "predictedCoPpm": 2.798325927294055
+    },
+    {
+      "timestampSeconds": 126.467,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 7.59,
+      "predictedCoPpm": 7.8361485129776085
+    },
+    {
+      "timestampSeconds": 247.477,
+      "sourceFile": "DATA.CSV",
+      "actualCoPpm": 6.52,
+      "predictedCoPpm": 6.616053162258618
+    },
+    {
+      "timestampSeconds": 166.766,
+      "sourceFile": "KITCHEN.CSV",
+      "actualCoPpm": 6.01,
+      "predictedCoPpm": 6.131241070192789
+    },
+    {
+      "timestampSeconds": 186.947,
+      "sourceFile": "KITCHEN.CSV",
+      "actualCoPpm": 6.35,
+      "predictedCoPpm": 6.218355187488811
+    },
+    {
+      "timestampSeconds": 183,
       "sourceFile": "new_sensor_data.csv",
-      "actualCoPpm": 45.85,
-      "predictedCoPpm": 93.25633239746094
+      "actualCoPpm": 0.18,
+      "predictedCoPpm": 0.2864245407841005
+    },
+    {
+      "timestampSeconds": 285,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.1,
+      "predictedCoPpm": 0.2079025183650895
+    },
+    {
+      "timestampSeconds": 77,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.07,
+      "predictedCoPpm": 0.19943392475446814
+    },
+    {
+      "timestampSeconds": 167,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.04,
+      "predictedCoPpm": 0.16469433378550086
+    },
+    {
+      "timestampSeconds": 495,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.24,
+      "predictedCoPpm": 0.3373065554446928
+    },
+    {
+      "timestampSeconds": 556,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.24,
+      "predictedCoPpm": 0.34532562963078073
+    },
+    {
+      "timestampSeconds": 677,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.2,
+      "predictedCoPpm": 0.3029621484000775
+    },
+    {
+      "timestampSeconds": 839,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.31,
+      "predictedCoPpm": 0.4012678361619062
+    },
+    {
+      "timestampSeconds": 880,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.23,
+      "predictedCoPpm": 0.33748683941327173
+    },
+    {
+      "timestampSeconds": 1102,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.19,
+      "predictedCoPpm": 0.2943148886756579
+    },
+    {
+      "timestampSeconds": 1122,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 0.21,
+      "predictedCoPpm": 0.3024949546752044
+    },
+    {
+      "timestampSeconds": 246,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.1729427465181404
+    },
+    {
+      "timestampSeconds": 368,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.16378940350298749
+    },
+    {
+      "timestampSeconds": 613,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.06,
+      "predictedCoPpm": 0.18216138371019655
+    },
+    {
+      "timestampSeconds": 633,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.06,
+      "predictedCoPpm": 0.19093917073729885
+    },
+    {
+      "timestampSeconds": 695,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.17299985984445454
+    },
+    {
+      "timestampSeconds": 1062,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.06,
+      "predictedCoPpm": 0.18163344411714313
+    },
+    {
+      "timestampSeconds": 1102,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.06,
+      "predictedCoPpm": 0.182459496347708
+    },
+    {
+      "timestampSeconds": 1184,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.17315898959863713
+    },
+    {
+      "timestampSeconds": 1204,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.18237646681934108
+    },
+    {
+      "timestampSeconds": 1306,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.17357822766576608
+    },
+    {
+      "timestampSeconds": 1510,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.12,
+      "predictedCoPpm": 0.23389747306717748
+    },
+    {
+      "timestampSeconds": 1775,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.11,
+      "predictedCoPpm": 0.2242773942105798
+    },
+    {
+      "timestampSeconds": 1796,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.11,
+      "predictedCoPpm": 0.22519300843975804
+    },
+    {
+      "timestampSeconds": 1938,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.12,
+      "predictedCoPpm": 0.22451863772627223
+    },
+    {
+      "timestampSeconds": 2183,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.11,
+      "predictedCoPpm": 0.22450508437678884
+    },
+    {
+      "timestampSeconds": 2224,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.12,
+      "predictedCoPpm": 0.23382244123602827
+    },
+    {
+      "timestampSeconds": 2611,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.12,
+      "predictedCoPpm": 0.23382589062452294
+    },
+    {
+      "timestampSeconds": 2,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.06,
+      "predictedCoPpm": 0.20818811552222205
+    },
+    {
+      "timestampSeconds": 36,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.24,
+      "predictedCoPpm": 0.3375169376173047
+    },
+    {
+      "timestampSeconds": 118,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.24,
+      "predictedCoPpm": 0.3373589678344744
+    },
+    {
+      "timestampSeconds": 159,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.24,
+      "predictedCoPpm": 0.33749721810431765
+    },
+    {
+      "timestampSeconds": 464,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.18,
+      "predictedCoPpm": 0.2947836697297499
+    },
+    {
+      "timestampSeconds": 750,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.19,
+      "predictedCoPpm": 0.30410215603477964
+    },
+    {
+      "timestampSeconds": 791,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.19,
+      "predictedCoPpm": 0.2943151328801531
+    },
+    {
+      "timestampSeconds": 933,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.18,
+      "predictedCoPpm": 0.2847090347309055
+    },
+    {
+      "timestampSeconds": 1158,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.17,
+      "predictedCoPpm": 0.2770331594372546
+    },
+    {
+      "timestampSeconds": 1300,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.17,
+      "predictedCoPpm": 0.27716139732279477
+    },
+    {
+      "timestampSeconds": 1484,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.17,
+      "predictedCoPpm": 0.27677653103836475
+    },
+    {
+      "timestampSeconds": 1647,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.17,
+      "predictedCoPpm": 0.27742709181356884
+    },
+    {
+      "timestampSeconds": 1708,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.17,
+      "predictedCoPpm": 0.2770332204883784
+    },
+    {
+      "timestampSeconds": 2055,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.18,
+      "predictedCoPpm": 0.2768111775511208
+    },
+    {
+      "timestampSeconds": 2076,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.18,
+      "predictedCoPpm": 0.2760038374900004
+    },
+    {
+      "timestampSeconds": 34,
+      "sourceFile": "sensor_data.csv",
+      "actualCoPpm": 0.05,
+      "predictedCoPpm": 0.17242808554451333
     }
   ]
 }

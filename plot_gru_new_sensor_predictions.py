@@ -39,10 +39,12 @@ def main() -> None:
     with PREDICTIONS_JSON.open() as f:
         summary = json.load(f)
 
-    lower = summary["eligibleTargetMinimumCoPpm"]
+    lower = summary.get("eligibleTargetMinimumCoPpm")
     upper = summary["maximumCoPpmIncluded"]
-    if (df["actualCoPpm"] < lower).any() or (df["actualCoPpm"] > upper).any():
-        raise ValueError(f"Test targets must be within {lower}-{upper} ppm")
+    if lower is not None and (df["actualCoPpm"] < lower).any():
+        raise ValueError(f"Test targets must not be below {lower} ppm")
+    if (df["actualCoPpm"] > upper).any():
+        raise ValueError(f"Test targets must not be above {upper} ppm")
 
     x = range(1, len(df) + 1)
     fig, ax = plt.subplots(figsize=(13, 7.5), dpi=180)
@@ -74,16 +76,6 @@ def main() -> None:
     ax.set_ylabel("CO concentration (ppm)")
     ax.grid(True, axis="y", alpha=0.3)
     ax.legend(loc="upper right", frameon=True)
-    ax.text(
-        0.015,
-        0.04,
-        f"Test targets filtered to {lower}-{upper} ppm | "
-        f"n={len(df)} | MAE={summary['testMae']:.2f} ppm | RMSE={summary['testRmse']:.2f} ppm",
-        transform=ax.transAxes,
-        fontsize=13,
-        bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": "#cccccc", "alpha": 0.92},
-    )
-
     fig.tight_layout()
     fig.savefig(PNG_PATH, bbox_inches="tight")
     fig.savefig(PDF_PATH, bbox_inches="tight")
@@ -99,6 +91,7 @@ def main() -> None:
                 "predictedMaxPpm": float(df["predictedCoPpm"].max()),
                 "testMae": summary["testMae"],
                 "testRmse": summary["testRmse"],
+                "testR2": summary["testR2"],
             },
             indent=2,
         )
