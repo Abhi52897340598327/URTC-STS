@@ -48,7 +48,7 @@ def render_matrix(
         colLabels=col_labels,
         cellLoc="center",
         colLoc="center",
-        loc="center",
+        bbox=[0.02, 0.16, 0.96, 0.70],
         colWidths=col_widths,
     )
     table.auto_set_font_size(False)
@@ -87,10 +87,19 @@ def render_matrix(
             cell.get_text().set_ha("left")
             cell.get_text().set_weight("bold")
 
-    ax.set_title(title, fontsize=16, fontweight="bold", pad=18)
     ax.text(
         0.5,
-        -0.035,
+        0.875,
+        title,
+        ha="center",
+        va="bottom",
+        fontsize=16,
+        fontweight="bold",
+        transform=ax.transAxes,
+    )
+    ax.text(
+        0.5,
+        0.095,
         "Scores are normalized on a 1-5 scale; final score is the weighted sum.",
         ha="center",
         va="top",
@@ -98,7 +107,7 @@ def render_matrix(
         color="#475569",
         transform=ax.transAxes,
     )
-    fig.tight_layout()
+    fig.subplots_adjust(left=0.02, right=0.98, top=0.98, bottom=0.04)
     fig.savefig(output_base.with_suffix(".png"), dpi=600, bbox_inches="tight")
     fig.savefig(output_base.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(fig)

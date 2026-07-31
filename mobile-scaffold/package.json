@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "eval:metrics": "node scripts/generate-evaluation-data.mjs",
+    "train:gru:new-sensor": "node scripts/train-gru-new-sensor-data.mjs",
     "cap:sync": "capacitor sync android",
     "cap:open": "capacitor open android",
     "cap:run": "capacitor run android"

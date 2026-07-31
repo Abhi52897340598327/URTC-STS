@@ -1,0 +1,292 @@
+{
+  "generatedAt": "2026-07-31T01:18:53.560Z",
+  "framework": "TensorFlow.js",
+  "modelType": "GRU",
+  "dataDir": "/Users/abhiraamvenigalla/URTC-STS/data/co-data",
+  "sourceFiles": [
+    "BATHROOM.CSV",
+    "BEDROOM.CSV",
+    "D3131.CSV",
+    "D3132.CSV",
+    "D3442.CSV",
+    "DATA.CSV",
+    "KITCHEN.CSV",
+    "LOG000.CSV",
+    "TEST.CSV",
+    "new_sensor_data.csv",
+    "sensor_data.csv"
+  ],
+  "rawSampleCountsByFile": {
+    "BATHROOM.CSV": 2315,
+    "BEDROOM.CSV": 1712,
+    "D3131.CSV": 1322,
+    "D3132.CSV": 800,
+    "D3442.CSV": 212,
+    "DATA.CSV": 1663,
+    "KITCHEN.CSV": 168,
+    "LOG000.CSV": 33,
+    "TEST.CSV": 0,
+    "new_sensor_data.csv": 781,
+    "sensor_data.csv": 2470
+  },
+  "sequenceCountsByFile": {
+    "BATHROOM.CSV": 2255,
+    "BEDROOM.CSV": 1652,
+    "D3131.CSV": 1262,
+    "D3132.CSV": 740,
+    "D3442.CSV": 152,
+    "DATA.CSV": 1603,
+    "KITCHEN.CSV": 108,
+    "LOG000.CSV": 0,
+    "TEST.CSV": 0,
+    "new_sensor_data.csv": 721,
+    "sensor_data.csv": 2410
+  },
+  "eligibleTargetMinimumCoPpm": 35,
+  "maximumCoPpmIncluded": 200,
+  "eligibleSequenceCountsByFile": {
+    "BATHROOM.CSV": 0,
+    "BEDROOM.CSV": 0,
+    "D3131.CSV": 0,
+    "D3132.CSV": 139,
+    "D3442.CSV": 73,
+    "DATA.CSV": 0,
+    "KITCHEN.CSV": 0,
+    "LOG000.CSV": 0,
+    "TEST.CSV": 0,
+    "new_sensor_data.csv": 1,
+    "sensor_data.csv": 0
+  },
+  "eligibleSequenceCount": 213,
+  "sequenceCount": 213,
+  "trainSequenceCount": 181,
+  "testSequenceCount": 32,
+  "testSplit": 0.15,
+  "inputWindowLengthTimesteps": 30,
+  "forecastHorizonSteps": 30,
+  "inputFeatures": [
+    "coPpm",
+    "bpm_zero_filled",
+    "accelX_zero_filled",
+    "accelY_zero_filled",
+    "accelZ_zero_filled"
+  ],
+  "epochs": 180,
+  "batchSize": 32,
+  "finalTrainLoss": 1778.313232421875,
+  "finalValidationLoss": 1926.4102783203125,
+  "finalTrainMae": 35.077842712402344,
+  "finalValidationMae": 37.45417022705078,
+  "testMae": 37.454168577194224,
+  "testRmse": 43.89089007176272,
+  "featureStats": {
+    "mean": [
+      38.9771546961326,
+      0,
+      0,
+      0,
+      0
+    ],
+    "std": [
+      44.43444254100666,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "predictions": [
+    {
+      "timestampSeconds": 338.439,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 57.04,
+      "predictedCoPpm": 93.2587890625
+    },
+    {
+      "timestampSeconds": 340.459,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 43.49,
+      "predictedCoPpm": 93.25836944580078
+    },
+    {
+      "timestampSeconds": 342.479,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 35.36,
+      "predictedCoPpm": 93.25791931152344
+    },
+    {
+      "timestampSeconds": 350.561,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 126.14,
+      "predictedCoPpm": 93.2573013305664
+    },
+    {
+      "timestampSeconds": 352.581,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 181.09,
+      "predictedCoPpm": 93.25728607177734
+    },
+    {
+      "timestampSeconds": 354.63,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 121.03,
+      "predictedCoPpm": 93.25877380371094
+    },
+    {
+      "timestampSeconds": 356.65,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 112.06,
+      "predictedCoPpm": 93.25923919677734
+    },
+    {
+      "timestampSeconds": 358.67,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 94.15,
+      "predictedCoPpm": 93.24735260009766
+    },
+    {
+      "timestampSeconds": 360.69,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 78.34,
+      "predictedCoPpm": 93.25143432617188
+    },
+    {
+      "timestampSeconds": 362.71,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 66.04,
+      "predictedCoPpm": 93.25418090820312
+    },
+    {
+      "timestampSeconds": 364.73,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 63.85,
+      "predictedCoPpm": 93.25559997558594
+    },
+    {
+      "timestampSeconds": 366.75,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 80.84,
+      "predictedCoPpm": 93.2564926147461
+    },
+    {
+      "timestampSeconds": 368.77,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 82.75,
+      "predictedCoPpm": 93.2569580078125
+    },
+    {
+      "timestampSeconds": 370.792,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 85.34,
+      "predictedCoPpm": 93.25731658935547
+    },
+    {
+      "timestampSeconds": 372.812,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 90.01,
+      "predictedCoPpm": 93.25740051269531
+    },
+    {
+      "timestampSeconds": 374.832,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 113.65,
+      "predictedCoPpm": 93.25736999511719
+    },
+    {
+      "timestampSeconds": 376.852,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 145.31,
+      "predictedCoPpm": 93.25091552734375
+    },
+    {
+      "timestampSeconds": 378.872,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 128.75,
+      "predictedCoPpm": 65.46031188964844
+    },
+    {
+      "timestampSeconds": 380.892,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 155.19,
+      "predictedCoPpm": 65.46760559082031
+    },
+    {
+      "timestampSeconds": 382.912,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 110.48,
+      "predictedCoPpm": 93.25727844238281
+    },
+    {
+      "timestampSeconds": 384.932,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 98.43,
+      "predictedCoPpm": 93.25746154785156
+    },
+    {
+      "timestampSeconds": 386.952,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 72.31,
+      "predictedCoPpm": 93.25751495361328
+    },
+    {
+      "timestampSeconds": 388.972,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 53.56,
+      "predictedCoPpm": 93.25796508789062
+    },
+    {
+      "timestampSeconds": 390.994,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 40.53,
+      "predictedCoPpm": 93.2587661743164
+    },
+    {
+      "timestampSeconds": 393.014,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 36.91,
+      "predictedCoPpm": 93.2587890625
+    },
+    {
+      "timestampSeconds": 397.054,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 37.7,
+      "predictedCoPpm": 93.25785827636719
+    },
+    {
+      "timestampSeconds": 403.114,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 36.52,
+      "predictedCoPpm": 93.25862884521484
+    },
+    {
+      "timestampSeconds": 439.478,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 40.53,
+      "predictedCoPpm": 93.2521743774414
+    },
+    {
+      "timestampSeconds": 441.498,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 38.9,
+      "predictedCoPpm": 93.2519302368164
+    },
+    {
+      "timestampSeconds": 443.518,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 45.67,
+      "predictedCoPpm": 93.24868774414062
+    },
+    {
+      "timestampSeconds": 445.536,
+      "sourceFile": "D3442.CSV",
+      "actualCoPpm": 44.35,
+      "predictedCoPpm": 93.25118255615234
+    },
+    {
+      "timestampSeconds": 352,
+      "sourceFile": "new_sensor_data.csv",
+      "actualCoPpm": 45.85,
+      "predictedCoPpm": 93.25633239746094
+    }
+  ]
+}
