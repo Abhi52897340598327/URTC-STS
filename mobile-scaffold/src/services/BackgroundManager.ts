@@ -8,6 +8,12 @@ import {
 import type { MlPredictorService } from './MlPredictorService';
 import type { WebSocketService } from './WebSocketService';
 import type { PredictionResult } from './telemetryTypes';
+import {
+  measureEmergencyDispatchLatency,
+  simulatedDispatchTransport,
+  type DispatchLatencyMeasurement,
+  type DispatchTransport,
+} from './EvaluationInstrumentationService';
 
 const CONNECTED_DEVICE_SERVICE_TYPE = 16 as ServiceType;
 
@@ -15,6 +21,8 @@ type BackgroundManagerOptions = {
   foregroundNotificationId?: number;
   foregroundChannelId?: string;
   alertChannelId?: string;
+  dispatchTransport?: DispatchTransport;
+  onDispatchLatencyMeasured?: (measurement: DispatchLatencyMeasurement) => void;
 };
 
 /**
@@ -31,6 +39,8 @@ export class BackgroundManager {
   private readonly foregroundNotificationId: number;
   private readonly foregroundChannelId: string;
   private readonly alertChannelId: string;
+  private readonly dispatchTransport: DispatchTransport;
+  private readonly onDispatchLatencyMeasured?: (measurement: DispatchLatencyMeasurement) => void;
   private unsubscribeTelemetry: (() => void) | null = null;
   private lastAlertAtMs = 0;
 
@@ -44,6 +54,8 @@ export class BackgroundManager {
     this.foregroundNotificationId = options.foregroundNotificationId ?? 1001;
     this.foregroundChannelId = options.foregroundChannelId ?? 'codetect-monitoring';
     this.alertChannelId = options.alertChannelId ?? 'codetect-critical-alerts';
+    this.dispatchTransport = options.dispatchTransport ?? simulatedDispatchTransport;
+    this.onDispatchLatencyMeasured = options.onDispatchLatencyMeasured;
   }
 
   async startMonitoring(): Promise<void> {
@@ -52,8 +64,17 @@ export class BackgroundManager {
     await this.ml.init();
 
     this.unsubscribeTelemetry = this.websocket.subscribe(async (sample) => {
+      const websocketReceivedAtMs = performance.now();
       const prediction = await this.ml.ingestLiveSample(sample);
-      if (prediction?.isCriticalCo || prediction?.isFallDetected) {
+      if (prediction?.isCriticalCo || prediction?.isFallDetected || prediction?.isAcutePhysiologicalDistress) {
+        const measurement = await measureEmergencyDispatchLatency(
+          websocketReceivedAtMs,
+          sample,
+          prediction,
+          this.dispatchTransport,
+        );
+        console.info('CODetect dispatch latency', measurement);
+        this.onDispatchLatencyMeasured?.(measurement);
         await this.raiseCriticalAlert(prediction);
       }
     });
@@ -126,10 +147,14 @@ export class BackgroundManager {
 
     const title = prediction.isCriticalCo
       ? 'Critical CO risk'
-      : 'Possible fall detected';
+      : prediction.isAcutePhysiologicalDistress
+        ? 'Acute physiological distress'
+        : 'Possible fall detected';
     const body = prediction.isCriticalCo
       ? `Predicted CO ${prediction.predictedCoPpm.toFixed(0)} ppm in ${prediction.horizonSeconds.toFixed(0)}s.`
-      : `Acceleration spike ${prediction.accelerationMagnitudeG.toFixed(1)} g detected.`;
+      : prediction.isAcutePhysiologicalDistress
+        ? `Tachycardia risk score ${prediction.tachycardiaRiskScore.toFixed(2)} exceeded threshold.`
+        : `Acceleration spike ${prediction.accelerationMagnitudeG.toFixed(1)} g detected.`;
 
     await LocalNotifications.schedule({
       notifications: [{

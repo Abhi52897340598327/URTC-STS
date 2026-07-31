@@ -12,6 +12,10 @@ export type PredictionResult = {
   horizonSeconds: number;
   isCriticalCo: boolean;
   isFallDetected: boolean;
+  fallSvmDecisionScore: number;
+  fallSvmPredictedClass: number;
+  tachycardiaRiskScore: number;
+  isAcutePhysiologicalDistress: boolean;
   accelerationMagnitudeG: number;
   timestampMs: number;
 };

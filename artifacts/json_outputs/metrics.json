@@ -1,9 +1,60 @@
 {
-  "accuracy": 0.9789964994165694,
-  "precision": 0.9738717339667459,
-  "recall_sensitivity": 0.9832134292565947,
-  "f1": 0.9785202863961814,
-  "roc_auc": 0.9987791584913888,
+  "accuracy": 0.9918319719953326,
+  "precision": 0.9834905660377359,
+  "recall_sensitivity": 1.0,
+  "f1": 0.9916765755053508,
+  "roc_auc": 0.9994495312840637,
+  "selected_model": "Gradient Boosting",
+  "model_comparison": [
+    {
+      "model": "Baseline (majority class)",
+      "accuracy": 0.5134189031505251,
+      "precision": 0.0,
+      "recall_sensitivity": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5
+    },
+    {
+      "model": "SVM (RBF)",
+      "accuracy": 0.9789964994165694,
+      "precision": 0.9738717339667459,
+      "recall_sensitivity": 0.9832134292565947,
+      "f1": 0.9785202863961814,
+      "roc_auc": 0.9987737083060825
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.9906651108518086,
+      "precision": 0.983451536643026,
+      "recall_sensitivity": 0.9976019184652278,
+      "f1": 0.9904761904761905,
+      "roc_auc": 0.99945498146937
+    },
+    {
+      "model": "Extra Trees",
+      "accuracy": 0.9918319719953326,
+      "precision": 0.985781990521327,
+      "recall_sensitivity": 0.9976019184652278,
+      "f1": 0.9916567342073898,
+      "roc_auc": 0.9998691955526489
+    },
+    {
+      "model": "Gradient Boosting",
+      "accuracy": 0.9918319719953326,
+      "precision": 0.9834905660377359,
+      "recall_sensitivity": 1.0,
+      "f1": 0.9916765755053508,
+      "roc_auc": 0.9994495312840637
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.970828471411902,
+      "precision": 0.9711538461538461,
+      "recall_sensitivity": 0.9688249400479616,
+      "f1": 0.9699879951980792,
+      "roc_auc": 0.9971659036407238
+    }
+  ],
   "train_recordings": 3526,
   "test_recordings": 857,
   "train_falls": 1700,

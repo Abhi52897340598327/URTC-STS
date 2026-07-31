@@ -9,6 +9,6 @@ def build_model() -> Pipeline:
     return Pipeline(
         [
             ("scale", StandardScaler()),
-            ("svm", SVC(kernel="rbf", C=10.0, gamma="scale", class_weight="balanced", probability=True, random_state=42)),
+            ("svm", SVC(kernel="rbf", C=10.0, gamma="scale", class_weight="balanced", random_state=42)),
         ]
     )

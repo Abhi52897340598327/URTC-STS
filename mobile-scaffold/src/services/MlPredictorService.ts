@@ -1,17 +1,27 @@
 import * as tf from '@tensorflow/tfjs';
 import {
+  measurePredictLatency,
+  type PredictLatencySummary,
+} from './EvaluationInstrumentationService';
+import {
   TELEMETRY_FEATURE_COUNT,
   type PredictionListener,
   type PredictionResult,
   type TelemetrySample,
   telemetryToFeatureVector,
 } from './telemetryTypes';
+import {
+  DEFAULT_TACHYCARDIA_RISK_CONFIG,
+  computeTachycardiaRisk,
+  type TachycardiaRiskConfig,
+} from './TachycardiaRiskService';
+import { fallSvmPredictor } from './FallSvmPredictorService';
 
 type MlPredictorOptions = {
   timeSteps?: number;
   forecastHorizonSteps?: number;
   criticalCoPpm?: number;
-  fallMagnitudeThresholdG?: number;
+  tachycardiaRiskConfig?: TachycardiaRiskConfig;
   modelUrl?: string;
 };
 
@@ -28,6 +38,38 @@ type FeatureStats = {
   std: number[];
 };
 
+export type MlArchitectureSummary = {
+  framework: 'TensorFlow.js';
+  modelType: 'GRU';
+  storageUrl: string;
+  inputShape: [number, number];
+  inputWindowLengthTimesteps: number;
+  inputWindowLengthSecondsAt10Hz: number;
+  forecastHorizonSteps: number;
+  forecastHorizonSecondsAt10Hz: number;
+  recurrentLayers: number;
+  gruUnits: number;
+  denseUnits: number[];
+  dropoutRate: number;
+  loss: string;
+  optimizer: string;
+  defaultLearningRate: number;
+  defaultEpochs: number;
+  defaultBatchSize: number;
+  defaultValidationSplit: number;
+  criticalCoPpm: number;
+  fallDetectionModelType: string;
+  fallSvmSupportVectorCount: number;
+  fallSvmFeatureCount: number;
+  fallSvmGamma: number;
+  tachycardiaAlpha: number;
+  tachycardiaBeta: number;
+  tachycardiaDistressThreshold: number;
+  tachycardiaRestingBpm: number;
+  tachycardiaBpm: number;
+  tachycardiaAcuteRiseBpmPerMinute: number;
+};
+
 const DEFAULT_MODEL_URL = 'indexeddb://co-gru-model';
 
 /**
@@ -41,7 +83,7 @@ export class MlPredictorService {
   private readonly timeSteps: number;
   private readonly forecastHorizonSteps: number;
   private readonly criticalCoPpm: number;
-  private readonly fallMagnitudeThresholdG: number;
+  private readonly tachycardiaRiskConfig: TachycardiaRiskConfig;
   private readonly modelUrl: string;
 
   private model: tf.LayersModel | null = null;
@@ -54,7 +96,7 @@ export class MlPredictorService {
     this.timeSteps = options.timeSteps ?? 30;
     this.forecastHorizonSteps = options.forecastHorizonSteps ?? 30;
     this.criticalCoPpm = options.criticalCoPpm ?? 70;
-    this.fallMagnitudeThresholdG = options.fallMagnitudeThresholdG ?? 2.6;
+    this.tachycardiaRiskConfig = options.tachycardiaRiskConfig ?? DEFAULT_TACHYCARDIA_RISK_CONFIG;
     this.modelUrl = options.modelUrl ?? DEFAULT_MODEL_URL;
   }
 
@@ -70,6 +112,62 @@ export class MlPredictorService {
 
   hasModel(): boolean {
     return this.model !== null;
+  }
+
+  getArchitectureSummary(): MlArchitectureSummary {
+    const fallSvmSummary = fallSvmPredictor.getModelSummary();
+    return {
+      framework: 'TensorFlow.js',
+      modelType: 'GRU',
+      storageUrl: this.modelUrl,
+      inputShape: [this.timeSteps, TELEMETRY_FEATURE_COUNT],
+      inputWindowLengthTimesteps: this.timeSteps,
+      inputWindowLengthSecondsAt10Hz: this.timeSteps / 10,
+      forecastHorizonSteps: this.forecastHorizonSteps,
+      forecastHorizonSecondsAt10Hz: this.forecastHorizonSteps / 10,
+      recurrentLayers: 1,
+      gruUnits: 48,
+      denseUnits: [24, 1],
+      dropoutRate: 0.15,
+      loss: 'meanSquaredError',
+      optimizer: 'Adam',
+      defaultLearningRate: 0.001,
+      defaultEpochs: 30,
+      defaultBatchSize: 32,
+      defaultValidationSplit: 0.15,
+      criticalCoPpm: this.criticalCoPpm,
+      fallDetectionModelType: 'RBF SVM',
+      fallSvmSupportVectorCount: fallSvmSummary.supportVectorCount,
+      fallSvmFeatureCount: fallSvmSummary.featureCount,
+      fallSvmGamma: fallSvmSummary.gamma,
+      tachycardiaAlpha: this.tachycardiaRiskConfig.alpha,
+      tachycardiaBeta: this.tachycardiaRiskConfig.beta,
+      tachycardiaDistressThreshold: this.tachycardiaRiskConfig.distressThreshold,
+      tachycardiaRestingBpm: this.tachycardiaRiskConfig.restingBpm,
+      tachycardiaBpm: this.tachycardiaRiskConfig.tachycardiaBpm,
+      tachycardiaAcuteRiseBpmPerMinute: this.tachycardiaRiskConfig.acuteRiseBpmPerMinute,
+    };
+  }
+
+  async measureSinglePredictLatency(windowSamples: TelemetrySample[], runs = 100): Promise<PredictLatencySummary> {
+    if (!this.model || !this.featureStats) {
+      throw new Error('Model and feature stats must be initialized before benchmarking predict latency');
+    }
+    if (windowSamples.length !== this.timeSteps) {
+      throw new Error(`Expected ${this.timeSteps} samples, got ${windowSamples.length}`);
+    }
+
+    const input = tf.tensor3d(
+      this.flattenNormalizedWindow(windowSamples),
+      [1, this.timeSteps, TELEMETRY_FEATURE_COUNT],
+      'float32',
+    );
+
+    try {
+      return await measurePredictLatency(this.model, input, runs);
+    } finally {
+      input.dispose();
+    }
   }
 
   buildModel(learningRate = 0.001): tf.LayersModel {
@@ -169,11 +267,17 @@ export class MlPredictorService {
       });
 
       const accelerationMagnitudeG = this.accelerationMagnitude(sample);
+      const fallSvmPrediction = fallSvmPredictor.predict(windowSnapshot);
+      const tachycardiaRisk = computeTachycardiaRisk(windowSnapshot, this.tachycardiaRiskConfig);
       const prediction: PredictionResult = {
         predictedCoPpm,
         horizonSeconds: this.forecastHorizonSteps / 10,
         isCriticalCo: predictedCoPpm >= this.criticalCoPpm,
-        isFallDetected: accelerationMagnitudeG >= this.fallMagnitudeThresholdG,
+        isFallDetected: fallSvmPrediction.isFallDetected,
+        fallSvmDecisionScore: fallSvmPrediction.decisionScore,
+        fallSvmPredictedClass: fallSvmPrediction.predictedClass,
+        tachycardiaRiskScore: tachycardiaRisk.score,
+        isAcutePhysiologicalDistress: tachycardiaRisk.isAcutePhysiologicalDistress,
         accelerationMagnitudeG,
         timestampMs: Date.now(),
       };

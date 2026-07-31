@@ -2,277 +2,277 @@
   "train": [
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-01-acc.csv",
+      "recording": "data/raw-fall/fall-01-acc.csv",
       "group": "local:fall-01-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-03-acc.csv",
+      "recording": "data/raw-fall/fall-03-acc.csv",
       "group": "local:fall-03-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-04-acc.csv",
+      "recording": "data/raw-fall/fall-04-acc.csv",
       "group": "local:fall-04-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-05-acc.csv",
+      "recording": "data/raw-fall/fall-05-acc.csv",
       "group": "local:fall-05-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-06-acc.csv",
+      "recording": "data/raw-fall/fall-06-acc.csv",
       "group": "local:fall-06-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-07-acc.csv",
+      "recording": "data/raw-fall/fall-07-acc.csv",
       "group": "local:fall-07-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-08-acc.csv",
+      "recording": "data/raw-fall/fall-08-acc.csv",
       "group": "local:fall-08-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-09-acc.csv",
+      "recording": "data/raw-fall/fall-09-acc.csv",
       "group": "local:fall-09-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-10-acc.csv",
+      "recording": "data/raw-fall/fall-10-acc.csv",
       "group": "local:fall-10-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-11-acc.csv",
+      "recording": "data/raw-fall/fall-11-acc.csv",
       "group": "local:fall-11-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-12-acc.csv",
+      "recording": "data/raw-fall/fall-12-acc.csv",
       "group": "local:fall-12-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-13-acc.csv",
+      "recording": "data/raw-fall/fall-13-acc.csv",
       "group": "local:fall-13-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-14-acc.csv",
+      "recording": "data/raw-fall/fall-14-acc.csv",
       "group": "local:fall-14-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-17-acc.csv",
+      "recording": "data/raw-fall/fall-17-acc.csv",
       "group": "local:fall-17-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-18-acc.csv",
+      "recording": "data/raw-fall/fall-18-acc.csv",
       "group": "local:fall-18-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-20-acc.csv",
+      "recording": "data/raw-fall/fall-20-acc.csv",
       "group": "local:fall-20-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-21-acc.csv",
+      "recording": "data/raw-fall/fall-21-acc.csv",
       "group": "local:fall-21-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-22-acc.csv",
+      "recording": "data/raw-fall/fall-22-acc.csv",
       "group": "local:fall-22-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-23-acc.csv",
+      "recording": "data/raw-fall/fall-23-acc.csv",
       "group": "local:fall-23-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-26-acc.csv",
+      "recording": "data/raw-fall/fall-26-acc.csv",
       "group": "local:fall-26-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-27-acc.csv",
+      "recording": "data/raw-fall/fall-27-acc.csv",
       "group": "local:fall-27-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-28-acc.csv",
+      "recording": "data/raw-fall/fall-28-acc.csv",
       "group": "local:fall-28-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-29-acc.csv",
+      "recording": "data/raw-fall/fall-29-acc.csv",
       "group": "local:fall-29-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-30-acc.csv",
+      "recording": "data/raw-fall/fall-30-acc.csv",
       "group": "local:fall-30-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-01-acc.csv",
+      "recording": "data/raw-no-fall/adl-01-acc.csv",
       "group": "local:adl-01-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-02-acc (1).csv",
+      "recording": "data/raw-no-fall/adl-02-acc (1).csv",
       "group": "local:adl-02-acc (1)",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-05-acc.csv",
+      "recording": "data/raw-no-fall/adl-05-acc.csv",
       "group": "local:adl-05-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-08-acc.csv",
+      "recording": "data/raw-no-fall/adl-08-acc.csv",
       "group": "local:adl-08-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-09-acc.csv",
+      "recording": "data/raw-no-fall/adl-09-acc.csv",
       "group": "local:adl-09-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-10-acc.csv",
+      "recording": "data/raw-no-fall/adl-10-acc.csv",
       "group": "local:adl-10-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-11-acc.csv",
+      "recording": "data/raw-no-fall/adl-11-acc.csv",
       "group": "local:adl-11-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-12-acc.csv",
+      "recording": "data/raw-no-fall/adl-12-acc.csv",
       "group": "local:adl-12-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-13-acc.csv",
+      "recording": "data/raw-no-fall/adl-13-acc.csv",
       "group": "local:adl-13-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-15-acc.csv",
+      "recording": "data/raw-no-fall/adl-15-acc.csv",
       "group": "local:adl-15-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-16-acc.csv",
+      "recording": "data/raw-no-fall/adl-16-acc.csv",
       "group": "local:adl-16-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-17-acc.csv",
+      "recording": "data/raw-no-fall/adl-17-acc.csv",
       "group": "local:adl-17-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-18-acc.csv",
+      "recording": "data/raw-no-fall/adl-18-acc.csv",
       "group": "local:adl-18-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-19-acc.csv",
+      "recording": "data/raw-no-fall/adl-19-acc.csv",
       "group": "local:adl-19-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-20-acc.csv",
+      "recording": "data/raw-no-fall/adl-20-acc.csv",
       "group": "local:adl-20-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-21-acc.csv",
+      "recording": "data/raw-no-fall/adl-21-acc.csv",
       "group": "local:adl-21-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-22-acc.csv",
+      "recording": "data/raw-no-fall/adl-22-acc.csv",
       "group": "local:adl-22-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-26-acc.csv",
+      "recording": "data/raw-no-fall/adl-26-acc.csv",
       "group": "local:adl-26-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-27-acc.csv",
+      "recording": "data/raw-no-fall/adl-27-acc.csv",
       "group": "local:adl-27-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-28-acc.csv",
+      "recording": "data/raw-no-fall/adl-28-acc.csv",
       "group": "local:adl-28-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-29-acc.csv",
+      "recording": "data/raw-no-fall/adl-29-acc.csv",
       "group": "local:adl-29-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-30-acc.csv",
+      "recording": "data/raw-no-fall/adl-30-acc.csv",
       "group": "local:adl-30-acc",
       "label": 0
     },
@@ -21160,85 +21160,85 @@
   "test": [
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-02-acc.csv",
+      "recording": "data/raw-fall/fall-02-acc.csv",
       "group": "local:fall-02-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-15-acc.csv",
+      "recording": "data/raw-fall/fall-15-acc.csv",
       "group": "local:fall-15-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-16-acc.csv",
+      "recording": "data/raw-fall/fall-16-acc.csv",
       "group": "local:fall-16-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-19-acc.csv",
+      "recording": "data/raw-fall/fall-19-acc.csv",
       "group": "local:fall-19-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-24-acc.csv",
+      "recording": "data/raw-fall/fall-24-acc.csv",
       "group": "local:fall-24-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-fall\\fall-25-acc.csv",
+      "recording": "data/raw-fall/fall-25-acc.csv",
       "group": "local:fall-25-acc",
       "label": 1
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-03-acc.csv",
+      "recording": "data/raw-no-fall/adl-03-acc.csv",
       "group": "local:adl-03-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-04-acc.csv",
+      "recording": "data/raw-no-fall/adl-04-acc.csv",
       "group": "local:adl-04-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-06-acc.csv",
+      "recording": "data/raw-no-fall/adl-06-acc.csv",
       "group": "local:adl-06-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-07-acc.csv",
+      "recording": "data/raw-no-fall/adl-07-acc.csv",
       "group": "local:adl-07-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-14-acc.csv",
+      "recording": "data/raw-no-fall/adl-14-acc.csv",
       "group": "local:adl-14-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-23-acc.csv",
+      "recording": "data/raw-no-fall/adl-23-acc.csv",
       "group": "local:adl-23-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-24-acc.csv",
+      "recording": "data/raw-no-fall/adl-24-acc.csv",
       "group": "local:adl-24-acc",
       "label": 0
     },
     {
       "source": "local",
-      "recording": "data\\raw-no-fall\\adl-25-acc.csv",
+      "recording": "data/raw-no-fall/adl-25-acc.csv",
       "group": "local:adl-25-acc",
       "label": 0
     },

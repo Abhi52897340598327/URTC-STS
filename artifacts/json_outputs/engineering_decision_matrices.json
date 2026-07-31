@@ -1,0 +1,92 @@
+{
+  "fall_detection": [
+    {
+      "model": "Gradient Boosting",
+      "accuracy": 4.959159859976663,
+      "recall_sensitivity": 5.0,
+      "deployment_efficiency": 4.0,
+      "mobile_deployability": 4.0,
+      "interpretability": 4.0,
+      "weighted_score": 4.585705950991832
+    },
+    {
+      "model": "SVM (RBF)",
+      "accuracy": 4.894982497082847,
+      "recall_sensitivity": 4.916067146282973,
+      "deployment_efficiency": 4.5,
+      "mobile_deployability": 4.0,
+      "interpretability": 3.0,
+      "weighted_score": 4.51726066054974
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 4.9533255542590435,
+      "recall_sensitivity": 4.988009592326139,
+      "deployment_efficiency": 3.0,
+      "mobile_deployability": 3.0,
+      "interpretability": 4.0,
+      "weighted_score": 4.2806663420722
+    },
+    {
+      "model": "Extra Trees",
+      "accuracy": 4.959159859976663,
+      "recall_sensitivity": 4.988009592326139,
+      "deployment_efficiency": 3.0,
+      "mobile_deployability": 3.0,
+      "interpretability": 3.5,
+      "weighted_score": 4.232708349073366
+    }
+  ],
+  "co_forecasting": [
+    {
+      "model": "GRU",
+      "temporal_fit": 4.5,
+      "on_device_latency": 4.0,
+      "model_size": 4.0,
+      "training_stability": 4.0,
+      "implementation_maturity": 4.5,
+      "interpretability": 2.5,
+      "weighted_score": 4.05
+    },
+    {
+      "model": "1D CNN",
+      "temporal_fit": 3.5,
+      "on_device_latency": 4.5,
+      "model_size": 4.0,
+      "training_stability": 4.0,
+      "implementation_maturity": 4.0,
+      "interpretability": 3.0,
+      "weighted_score": 3.875
+    },
+    {
+      "model": "Dense Baseline",
+      "temporal_fit": 2.0,
+      "on_device_latency": 5.0,
+      "model_size": 5.0,
+      "training_stability": 4.5,
+      "implementation_maturity": 4.0,
+      "interpretability": 4.0,
+      "weighted_score": 3.85
+    },
+    {
+      "model": "Temporal CNN (TCN)",
+      "temporal_fit": 4.0,
+      "on_device_latency": 4.0,
+      "model_size": 3.5,
+      "training_stability": 4.0,
+      "implementation_maturity": 3.5,
+      "interpretability": 3.0,
+      "weighted_score": 3.775
+    },
+    {
+      "model": "LSTM",
+      "temporal_fit": 4.5,
+      "on_device_latency": 3.0,
+      "model_size": 3.0,
+      "training_stability": 3.5,
+      "implementation_maturity": 4.5,
+      "interpretability": 2.5,
+      "weighted_score": 3.5999999999999996
+    }
+  ]
+}

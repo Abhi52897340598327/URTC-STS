@@ -53,6 +53,35 @@ button {
   justify-content: space-between;
 }
 
+.modal-backdrop {
+  align-items: center;
+  background: rgba(15, 23, 42, 0.42);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 18px;
+  position: fixed;
+  z-index: 10;
+}
+
+.startup-modal {
+  background: white;
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.24);
+  display: grid;
+  gap: 12px;
+  max-width: 380px;
+  padding: 22px;
+  width: min(100%, 380px);
+}
+
+.startup-modal p {
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
 .eyebrow {
   color: #0f766e;
   font-size: 0.78rem;
@@ -81,6 +110,8 @@ h2 {
 }
 
 .metric,
+.fall-status,
+.risk-status,
 .panel,
 .alert {
   background: white;
@@ -96,16 +127,42 @@ h2 {
   padding: 14px;
 }
 
+.fall-status,
+.risk-status {
+  border-color: #cbd5e1;
+  display: grid;
+  gap: 6px;
+  min-height: 112px;
+  padding: 14px;
+}
+
+.fall-status.detected,
+.risk-status.detected {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
 .metric span,
+.fall-status span,
+.fall-status small,
+.risk-status span,
+.risk-status small,
 .metric small,
 .panel-header span,
 .alert span {
   color: #64748b;
 }
 
-.metric strong {
+.metric strong,
+.fall-status strong,
+.risk-status strong {
   font-size: 1.85rem;
   line-height: 1;
+}
+
+.fall-status.detected strong,
+.risk-status.detected strong {
+  color: #b91c1c;
 }
 
 .panel {
@@ -120,6 +177,28 @@ h2 {
   justify-content: space-between;
 }
 
+.connection {
+  align-items: center;
+  display: inline-flex;
+  gap: 6px;
+}
+
+.connection::before {
+  background: #94a3b8;
+  border-radius: 999px;
+  content: "";
+  height: 8px;
+  width: 8px;
+}
+
+.connection.connected::before {
+  background: #16a34a;
+}
+
+.connection.connecting::before {
+  background: #f59e0b;
+}
+
 .sparkline {
   align-items: end;
   display: grid;
@@ -132,6 +211,43 @@ h2 {
   background: #2563eb;
   border-radius: 4px 4px 0 0;
   min-height: 4px;
+}
+
+.future-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  min-height: 180px;
+}
+
+.future-point {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+  text-align: center;
+}
+
+.future-point span,
+.future-point strong {
+  font-size: 0.78rem;
+}
+
+.future-point div {
+  align-items: end;
+  background: #eef2f7;
+  border-radius: 8px;
+  display: flex;
+  height: 126px;
+  overflow: hidden;
+}
+
+.future-point i {
+  background: linear-gradient(180deg, #f97316 0%, #2563eb 100%);
+  border-radius: 8px 8px 0 0;
+  display: block;
+  width: 100%;
 }
 
 .alert {
