@@ -74,7 +74,6 @@ def main() -> None:
     ax.set_title("GRU CO Forecast: Actual vs Predicted Test Data")
     ax.set_xlabel("Test data point index")
     ax.set_ylabel("CO concentration (ppm)")
-    ax.grid(True, axis="y", alpha=0.3)
     ax.legend(loc="upper right", frameon=True)
     fig.tight_layout()
     fig.savefig(PNG_PATH, bbox_inches="tight")

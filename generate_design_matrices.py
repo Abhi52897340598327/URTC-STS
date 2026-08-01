@@ -20,6 +20,14 @@ def weighted_score(scores: dict[str, float], weights: dict[str, float]) -> float
     return sum(scores[name] * weights[name] for name in weights)
 
 
+def score_label(row: dict, key: str) -> str:
+    raw_values = row.get("raw_values", {})
+    score = f"{row[key]:.2f}"
+    if key not in raw_values:
+        return score
+    return f"{score}\n({raw_values[key]})"
+
+
 def render_matrix(
     rows: list[dict],
     criteria: list[tuple[str, str]],
@@ -34,12 +42,12 @@ def render_matrix(
     for row in rows:
         cell_text.append([
             row["model"],
-            *[f"{row[key]:.2f}" for key, label in criteria],
+            *[score_label(row, key) for key, label in criteria],
             f"{row['weighted_score']:.3f}",
         ])
 
-    fig_width = 12.0
-    fig_height = max(5.0, fig_width * (len(rows) + 1.6) / len(col_labels) * 0.58)
+    fig_width = 16.0
+    fig_height = max(7.0, fig_width * (len(rows) + 2.1) / len(col_labels) * 0.78)
     fig, ax = plt.subplots(figsize=(fig_width, fig_height))
     ax.axis("off")
     col_widths = [0.24, *([0.12] * (len(col_labels) - 2)), 0.16]
@@ -48,24 +56,24 @@ def render_matrix(
         colLabels=col_labels,
         cellLoc="center",
         colLoc="center",
-        bbox=[0.02, 0.16, 0.96, 0.70],
+        bbox=[0.01, 0.16, 0.98, 0.70],
         colWidths=col_widths,
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(11)
-    table.scale(1, 2.35)
+    table.set_fontsize(11.0)
+    table.scale(1, 3.1)
 
     selected_row_index = next(i for i, row in enumerate(rows, start=1) if row["model"] == selected_model)
 
     for (row_idx, col_idx), cell in table.get_celld().items():
         cell.set_edgecolor("#334155")
         cell.set_linewidth(1.0)
-        cell.PAD = 0.08
+        cell.PAD = 0.09
         if row_idx == 0:
             cell.set_facecolor("#111827")
             cell.get_text().set_color("white")
             cell.get_text().set_weight("bold")
-            cell.get_text().set_fontsize(9.5)
+            cell.get_text().set_fontsize(11.0)
             cell.get_text().set_wrap(True)
             cell.set_linewidth(1.4)
         elif row_idx == selected_row_index:
@@ -86,6 +94,8 @@ def render_matrix(
         if row_idx > 0 and col_idx == 0:
             cell.get_text().set_ha("left")
             cell.get_text().set_weight("bold")
+        elif row_idx > 0 and col_idx != weighted_col:
+            cell.get_text().set_fontsize(10.2)
 
     ax.text(
         0.5,
@@ -93,17 +103,17 @@ def render_matrix(
         title,
         ha="center",
         va="bottom",
-        fontsize=16,
+        fontsize=20,
         fontweight="bold",
         transform=ax.transAxes,
     )
     ax.text(
         0.5,
         0.095,
-        "Scores are normalized on a 1-5 scale; final score is the weighted sum.",
+        "Scores are normalized on a 1-5 scale; bracketed values show the measured value or scoring basis.",
         ha="center",
         va="top",
-        fontsize=10.5,
+        fontsize=13.0,
         color="#475569",
         transform=ax.transAxes,
     )
@@ -159,6 +169,28 @@ def fall_model_matrix() -> list[dict]:
         rows.append({
             "model": model,
             **row_scores,
+            "raw_values": {
+                "accuracy": f"{result['accuracy'] * 100:.2f}%",
+                "recall_sensitivity": f"{result['recall_sensitivity'] * 100:.2f}%",
+                "deployment_efficiency": {
+                    "SVM (RBF)": "1 kernel eval",
+                    "Random Forest": "300 trees",
+                    "Extra Trees": "300 trees",
+                    "Gradient Boosting": "100 stages",
+                }[model],
+                "mobile_deployability": {
+                    "SVM (RBF)": "JSON export",
+                    "Random Forest": "large ensemble",
+                    "Extra Trees": "large ensemble",
+                    "Gradient Boosting": "compact ensemble",
+                }[model],
+                "interpretability": {
+                    "SVM (RBF)": "RBF margin",
+                    "Random Forest": "feature import.",
+                    "Extra Trees": "feature import.",
+                    "Gradient Boosting": "staged trees",
+                }[model],
+            },
             "weighted_score": weighted_score(row_scores, weights),
         })
     return rows
@@ -182,6 +214,14 @@ def gru_architecture_matrix() -> list[dict]:
             "training_stability": 4.5,
             "implementation_maturity": 4.0,
             "interpretability": 4.0,
+            "raw_values": {
+                "temporal_fit": "no memory",
+                "on_device_latency": "<1 ms",
+                "model_size": "smallest",
+                "training_stability": "stable",
+                "implementation_maturity": "standard layers",
+                "interpretability": "fully connected",
+            },
         },
         {
             "model": "1D CNN",
@@ -191,6 +231,14 @@ def gru_architecture_matrix() -> list[dict]:
             "training_stability": 4.0,
             "implementation_maturity": 4.0,
             "interpretability": 3.0,
+            "raw_values": {
+                "temporal_fit": "local windows",
+                "on_device_latency": "~2 ms",
+                "model_size": "small",
+                "training_stability": "stable",
+                "implementation_maturity": "standard conv",
+                "interpretability": "filters",
+            },
         },
         {
             "model": "Temporal CNN (TCN)",
@@ -200,6 +248,14 @@ def gru_architecture_matrix() -> list[dict]:
             "training_stability": 4.0,
             "implementation_maturity": 3.5,
             "interpretability": 3.0,
+            "raw_values": {
+                "temporal_fit": "dilated history",
+                "on_device_latency": "~3 ms",
+                "model_size": "medium",
+                "training_stability": "stable",
+                "implementation_maturity": "custom blocks",
+                "interpretability": "filters",
+            },
         },
         {
             "model": "LSTM",
@@ -209,6 +265,14 @@ def gru_architecture_matrix() -> list[dict]:
             "training_stability": 3.5,
             "implementation_maturity": 4.5,
             "interpretability": 2.5,
+            "raw_values": {
+                "temporal_fit": "gated memory",
+                "on_device_latency": "~8 ms",
+                "model_size": "largest",
+                "training_stability": "less stable",
+                "implementation_maturity": "standard RNN",
+                "interpretability": "hidden state",
+            },
         },
         {
             "model": "GRU",
@@ -218,6 +282,14 @@ def gru_architecture_matrix() -> list[dict]:
             "training_stability": 4.0,
             "implementation_maturity": 4.5,
             "interpretability": 2.5,
+            "raw_values": {
+                "temporal_fit": "gated memory",
+                "on_device_latency": "~5 ms",
+                "model_size": "fewer gates",
+                "training_stability": "stable",
+                "implementation_maturity": "standard RNN",
+                "interpretability": "hidden state",
+            },
         },
     ]
 

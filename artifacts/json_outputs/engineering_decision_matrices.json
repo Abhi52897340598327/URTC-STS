@@ -7,6 +7,13 @@
       "deployment_efficiency": 4.0,
       "mobile_deployability": 4.0,
       "interpretability": 4.0,
+      "raw_values": {
+        "accuracy": "99.18%",
+        "recall_sensitivity": "100.00%",
+        "deployment_efficiency": "100 stages",
+        "mobile_deployability": "compact ensemble",
+        "interpretability": "staged trees"
+      },
       "weighted_score": 4.585705950991832
     },
     {
@@ -16,6 +23,13 @@
       "deployment_efficiency": 4.5,
       "mobile_deployability": 4.0,
       "interpretability": 3.0,
+      "raw_values": {
+        "accuracy": "97.90%",
+        "recall_sensitivity": "98.32%",
+        "deployment_efficiency": "1 kernel eval",
+        "mobile_deployability": "JSON export",
+        "interpretability": "RBF margin"
+      },
       "weighted_score": 4.51726066054974
     },
     {
@@ -25,6 +39,13 @@
       "deployment_efficiency": 3.0,
       "mobile_deployability": 3.0,
       "interpretability": 4.0,
+      "raw_values": {
+        "accuracy": "99.07%",
+        "recall_sensitivity": "99.76%",
+        "deployment_efficiency": "300 trees",
+        "mobile_deployability": "large ensemble",
+        "interpretability": "feature import."
+      },
       "weighted_score": 4.2806663420722
     },
     {
@@ -34,6 +55,13 @@
       "deployment_efficiency": 3.0,
       "mobile_deployability": 3.0,
       "interpretability": 3.5,
+      "raw_values": {
+        "accuracy": "99.18%",
+        "recall_sensitivity": "99.76%",
+        "deployment_efficiency": "300 trees",
+        "mobile_deployability": "large ensemble",
+        "interpretability": "feature import."
+      },
       "weighted_score": 4.232708349073366
     }
   ],
@@ -46,6 +74,14 @@
       "training_stability": 4.0,
       "implementation_maturity": 4.5,
       "interpretability": 2.5,
+      "raw_values": {
+        "temporal_fit": "gated memory",
+        "on_device_latency": "~5 ms",
+        "model_size": "fewer gates",
+        "training_stability": "stable",
+        "implementation_maturity": "standard RNN",
+        "interpretability": "hidden state"
+      },
       "weighted_score": 4.05
     },
     {
@@ -56,6 +92,14 @@
       "training_stability": 4.0,
       "implementation_maturity": 4.0,
       "interpretability": 3.0,
+      "raw_values": {
+        "temporal_fit": "local windows",
+        "on_device_latency": "~2 ms",
+        "model_size": "small",
+        "training_stability": "stable",
+        "implementation_maturity": "standard conv",
+        "interpretability": "filters"
+      },
       "weighted_score": 3.875
     },
     {
@@ -66,6 +110,14 @@
       "training_stability": 4.5,
       "implementation_maturity": 4.0,
       "interpretability": 4.0,
+      "raw_values": {
+        "temporal_fit": "no memory",
+        "on_device_latency": "<1 ms",
+        "model_size": "smallest",
+        "training_stability": "stable",
+        "implementation_maturity": "standard layers",
+        "interpretability": "fully connected"
+      },
       "weighted_score": 3.85
     },
     {
@@ -76,6 +128,14 @@
       "training_stability": 4.0,
       "implementation_maturity": 3.5,
       "interpretability": 3.0,
+      "raw_values": {
+        "temporal_fit": "dilated history",
+        "on_device_latency": "~3 ms",
+        "model_size": "medium",
+        "training_stability": "stable",
+        "implementation_maturity": "custom blocks",
+        "interpretability": "filters"
+      },
       "weighted_score": 3.775
     },
     {
@@ -86,6 +146,14 @@
       "training_stability": 3.5,
       "implementation_maturity": 4.5,
       "interpretability": 2.5,
+      "raw_values": {
+        "temporal_fit": "gated memory",
+        "on_device_latency": "~8 ms",
+        "model_size": "largest",
+        "training_stability": "less stable",
+        "implementation_maturity": "standard RNN",
+        "interpretability": "hidden state"
+      },
       "weighted_score": 3.5999999999999996
     }
   ]
