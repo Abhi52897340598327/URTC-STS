@@ -333,7 +333,9 @@ def fall_accuracy_rows() -> list[dict[str, float | str]]:
     comparison = json.loads((OUTPUT_DIR / "fall_model_comparison.json").read_text(encoding="utf-8"))
     return [
         {
-            "model": item["model"].replace("Baseline (majority class)", "Baseline"),
+            "model": item["model"]
+            .replace("Baseline (majority class)", "Baseline")
+            .replace("SVM (RBF)", "SVM"),
             "score": item["accuracy"],
         }
         for item in sorted(comparison, key=lambda row: float(row["accuracy"]), reverse=True)
@@ -356,8 +358,8 @@ def main() -> None:
     fall_rows = fall_accuracy_rows()
     render_bar_chart(
         fall_rows,
-        "Fall-Detection Model Test Accuracy",
-        "Test accuracy",
+        "Fall-Detection Model Comparison: Test Accuracy",
+        "Test Accuracy",
         OUTPUT_DIR / "fall_engineering_decision_matrix",
         selected_model="Gradient Boosting",
     )
@@ -365,8 +367,8 @@ def main() -> None:
     gru_rows = co_forecasting_accuracy_rows()
     render_bar_chart(
         gru_rows,
-        "CO Forecasting Model Test Accuracy (R2)",
-        "Test R2",
+        "CO Forecasting Model Comparison: Test R2 Accuracy",
+        "Test R2 Accuracy",
         OUTPUT_DIR / "gru_engineering_decision_matrix",
         selected_model="GRU",
     )
