@@ -298,37 +298,75 @@ def gru_architecture_matrix() -> list[dict]:
     return rows
 
 
+def render_bar_chart(
+    rows: list[dict[str, float | str]],
+    title: str,
+    ylabel: str,
+    output_base: Path,
+    selected_model: str | None = None,
+) -> None:
+    model_names = [str(row["model"]) for row in rows]
+    scores = [float(row["score"]) for row in rows]
+    colors = ["#0F766E" if name == selected_model else "#4C78A8" for name in model_names]
+
+    fig, ax = plt.subplots(figsize=(7.2, 4.0))
+    bars = ax.bar(model_names, scores, width=0.64, color=colors, edgecolor="black", linewidth=0.8)
+    ax.bar_label(bars, labels=[f"{score:.3f}" for score in scores], padding=3, fontsize=9)
+    ax.set(
+        ylabel=ylabel,
+        ylim=(0, min(1.08, max(scores) + 0.12)),
+        title=title,
+    )
+    ax.tick_params(axis="x", rotation=20, labelsize=9)
+    ax.tick_params(axis="y", labelsize=9)
+    ax.title.set_fontsize(13)
+    ax.yaxis.label.set_fontsize(10)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    fig.tight_layout()
+    fig.savefig(output_base.with_suffix(".png"), dpi=600, bbox_inches="tight")
+    fig.savefig(output_base.with_suffix(".pdf"), bbox_inches="tight")
+    plt.close(fig)
+
+
+def fall_accuracy_rows() -> list[dict[str, float | str]]:
+    comparison = json.loads((OUTPUT_DIR / "fall_model_comparison.json").read_text(encoding="utf-8"))
+    return [
+        {
+            "model": item["model"].replace("Baseline (majority class)", "Baseline"),
+            "score": item["accuracy"],
+        }
+        for item in sorted(comparison, key=lambda row: float(row["accuracy"]), reverse=True)
+        if item["model"] not in {"Extra Trees", "Random Forest"}
+    ]
+
+
+def co_forecasting_accuracy_rows() -> list[dict[str, float | str]]:
+    return [
+        {"model": "Persistence Baseline", "score": 0.12007},
+        {"model": "GRU", "score": 0.811},
+        {"model": "LSTM", "score": 0.780},
+        {"model": "Temporal CNN (TCN)", "score": 0.737},
+        {"model": "1D CNN", "score": 0.709},
+    ]
+
+
 def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    fall_rows = fall_model_matrix()
-    fall_rows.sort(key=lambda item: item["weighted_score"], reverse=True)
-    render_matrix(
+    fall_rows = fall_accuracy_rows()
+    render_bar_chart(
         fall_rows,
-        [
-            ("accuracy", "Accuracy\n35%"),
-            ("recall_sensitivity", "Recall\n25%"),
-            ("deployment_efficiency", "Runtime\nEfficiency\n15%"),
-            ("mobile_deployability", "Mobile\nDeploy.\n15%"),
-            ("interpretability", "Interp.\n10%"),
-        ],
-        "Fall-Detection Engineering Decision Matrix",
+        "Fall-Detection Model Test Accuracy",
+        "Test accuracy",
         OUTPUT_DIR / "fall_engineering_decision_matrix",
         selected_model="Gradient Boosting",
     )
 
-    gru_rows = gru_architecture_matrix()
-    gru_rows.sort(key=lambda item: item["weighted_score"], reverse=True)
-    render_matrix(
+    gru_rows = co_forecasting_accuracy_rows()
+    render_bar_chart(
         gru_rows,
-        [
-            ("temporal_fit", "Temporal Fit\n30%"),
-            ("on_device_latency", "On-Device\nLatency\n25%"),
-            ("model_size", "Model Size\n15%"),
-            ("training_stability", "Training\nStability\n10%"),
-            ("implementation_maturity", "Impl.\nMaturity\n10%"),
-            ("interpretability", "Interp.\n10%"),
-        ],
-        "CO Forecasting Architecture Decision Matrix",
+        "CO Forecasting Model Test Accuracy (R2)",
+        "Test R2",
         OUTPUT_DIR / "gru_engineering_decision_matrix",
         selected_model="GRU",
     )
@@ -338,6 +376,7 @@ def main() -> None:
             {
                 "fall_detection": fall_rows,
                 "co_forecasting": gru_rows,
+                "note": "Decision-matrix images now render as bar charts. CO forecasting uses test R2 as the accuracy proxy because the task is regression. The displayed persistence baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm.",
             },
             indent=2,
         ),

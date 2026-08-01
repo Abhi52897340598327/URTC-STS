@@ -1,7 +1,13 @@
 """Generate an IEEE-style chart of end-to-end bracelet response time."""
 
 from pathlib import Path
+import os
 
+os.environ.setdefault("MPLCONFIGDIR", "/private/tmp/matplotlib-codetect")
+
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -17,11 +23,11 @@ def main() -> None:
     plt.rcParams.update({
         "font.family": "serif",
         "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
-        "font.size": 9,
-        "axes.labelsize": 9,
-        "axes.titlesize": 10,
-        "xtick.labelsize": 8,
-        "ytick.labelsize": 8,
+        "font.size": 12,
+        "axes.labelsize": 12,
+        "axes.titlesize": 14,
+        "xtick.labelsize": 11,
+        "ytick.labelsize": 11,
         "axes.linewidth": 0.8,
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
@@ -37,7 +43,7 @@ def main() -> None:
         edgecolor="black",
         linewidth=0.6,
     )
-    ax.bar_label(bars, labels=[f"{value:.1f}" for value in TIMES_SECONDS], padding=2, fontsize=7.5)
+    ax.bar_label(bars, labels=[f"{value:.1f}" for value in TIMES_SECONDS], padding=2, fontsize=10)
     ax.set(
         xlabel="Trial number",
         ylabel="End-to-end response time (s)",

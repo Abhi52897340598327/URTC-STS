@@ -67,10 +67,6 @@ def main() -> None:
         label="GRU prediction",
     )
 
-    change_indices = df.index[df["sourceFile"].ne(df["sourceFile"].shift())].tolist()
-    for idx in change_indices[1:]:
-        ax.axvline(idx + 0.5, color="#777777", linewidth=1.2, alpha=0.35)
-
     ax.set_title("GRU CO Forecast: Actual vs Predicted Test Data")
     ax.set_xlabel("Test data point index")
     ax.set_ylabel("CO concentration (ppm)")
