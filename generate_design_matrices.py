@@ -317,7 +317,7 @@ def render_bar_chart(
         ylim=(0, min(1.08, max(scores) + 0.12)),
         title=title,
     )
-    ax.tick_params(axis="x", rotation=0, labelsize=9)
+    ax.tick_params(axis="x", rotation=0, labelsize=12)
     ax.tick_params(axis="y", labelsize=9)
     ax.title.set_fontsize(13)
     ax.yaxis.label.set_fontsize(10)
