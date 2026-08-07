@@ -317,7 +317,7 @@ def render_bar_chart(
         ylim=(0, min(1.08, max(scores) + 0.12)),
         title=title,
     )
-    ax.tick_params(axis="x", rotation=20, labelsize=9)
+    ax.tick_params(axis="x", rotation=0, labelsize=9)
     ax.tick_params(axis="y", labelsize=9)
     ax.title.set_fontsize(13)
     ax.yaxis.label.set_fontsize(10)
@@ -345,7 +345,7 @@ def fall_accuracy_rows() -> list[dict[str, float | str]]:
 
 def co_forecasting_accuracy_rows() -> list[dict[str, float | str]]:
     return [
-        {"model": "Persistence Baseline", "score": 0.12007},
+        {"model": "Baseline", "score": 0.12007},
         {"model": "GRU", "score": 0.811},
         {"model": "LSTM", "score": 0.780},
         {"model": "Temporal CNN (TCN)", "score": 0.737},
@@ -378,7 +378,7 @@ def main() -> None:
             {
                 "fall_detection": fall_rows,
                 "co_forecasting": gru_rows,
-                "note": "Decision-matrix images now render as bar charts. CO forecasting uses test R2 as the accuracy proxy because the task is regression. The displayed persistence baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm.",
+                "note": "Decision-matrix images now render as bar charts. CO forecasting uses test R2 as the accuracy proxy because the task is regression. The displayed baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm.",
             },
             indent=2,
         ),

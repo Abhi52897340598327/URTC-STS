@@ -246,7 +246,7 @@ const main = async () => {
   const ysTrain = tf.tensor2d(normalizedTrainTargets, [trainCount, 1], 'float32');
   const xsTest = tf.tensor3d(normalizedTest, [testCount, TIME_STEPS, 5], 'float32');
   const results = [{
-    model: 'Persistence Baseline',
+    model: 'Baseline',
     testMae: persistenceMetrics.mae,
     testRmse: persistenceMetrics.rmse,
     testR2: persistenceMetrics.r2,

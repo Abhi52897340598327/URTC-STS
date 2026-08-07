@@ -19,7 +19,7 @@
   ],
   "co_forecasting": [
     {
-      "model": "Persistence Baseline",
+      "model": "Baseline",
       "score": 0.12007
     },
     {
@@ -39,5 +39,5 @@
       "score": 0.709
     }
   ],
-  "note": "Decision-matrix images now render as bar charts. CO forecasting uses test R2 as the accuracy proxy because the task is regression. The displayed persistence baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm."
+  "note": "Decision-matrix images now render as bar charts. CO forecasting uses test R2 as the accuracy proxy because the task is regression. The displayed baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm."
 }

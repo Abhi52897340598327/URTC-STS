@@ -1,9 +1,9 @@
 {
   "metric": "testR2",
-  "note": "CO forecasting is a regression task, so test R2 is used as the accuracy proxy. The displayed persistence baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm.",
+  "note": "CO forecasting is a regression task, so test R2 is used as the accuracy proxy. The displayed baseline is evaluated on ramp pairs where the previous CO value is 30-35 ppm and the next high-ramp target exceeds 100 ppm.",
   "modelComparison": [
     {
-      "model": "Persistence Baseline",
+      "model": "Baseline",
       "testR2": 0.12007,
       "rawRampR2": -12.00723482394179,
       "rawRampRmsePpm": 110.58083114079706,
